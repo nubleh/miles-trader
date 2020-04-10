@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { withRouter } from "react-router";
+import React, { useState, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 
 import styled, { css } from 'styled-components';
 
 import catalog from './data';
 
 function selectionToCode (selection: number[]) {
-  return catalog.map((item, itemIndex) => {
+  const codeInBin = catalog.map((item, itemIndex) => {
     const maxValue = item.remakes - 1;
     const maxInBin = maxValue.toString(2);
     let actualValue = (selection[itemIndex]).toString(2);
@@ -15,10 +15,45 @@ function selectionToCode (selection: number[]) {
     }
     return actualValue;
   }).join('');
+  return parseInt(codeInBin, 2).toString(36);
+}
+
+function codeToSelection (code: string) {
+  const codeInBin = parseInt(code, 36).toString(2).split('');
+  const selection = [...catalog].reverse().map((item, itemIndex) => {
+    const maxValue = item.remakes - 1;
+    const maxInBin = maxValue.toString(2);
+    let valueFromCode = '';
+    while (valueFromCode.length < maxInBin.length && codeInBin.length >= 1) {
+      valueFromCode = codeInBin.pop() + valueFromCode;
+    }
+    return parseInt(valueFromCode, 2);
+  });
+  return selection.reverse();
 }
 
 function App() {
-  const [selection, setSelection] = useState(catalog.map(() => 0) as number[]);
+
+  const location = useLocation();
+  const history = useHistory();
+
+  let defaultSelection = catalog.map(() => 0);
+  const [selection, setSelection] = useState(defaultSelection);
+
+
+  useEffect(() => {
+    const parts = location.pathname.split('/').filter(p => !!p);
+    const locCode = parts[0];
+    if (locCode !== '0') {
+      setSelection(codeToSelection(locCode));
+    }
+  }, [location.pathname]);
+
+  const code = selectionToCode(selection);
+
+  useEffect(() => {
+    history.replace(`/${code}`);
+  }, [code, history]);
 
   const selectItem = (itemIndex: number, variantIndex: number) => {
     return () => {
@@ -27,10 +62,8 @@ function App() {
       setSelection(newSelection);
     };
   };
-  const code = selectionToCode(selection);
   return (
     <MainDiv>
-      <div>{parseInt(code, 2).toString(36)}</div>
       {catalog.map((item, itemIndex) => {
         const remakes: string[] = [];
         for(let x = 0; x < item.remakes; x++) {
@@ -68,6 +101,7 @@ const ItemBox = styled.div`
   background: #111;
   margin: 8px;
   border-radius: 8px;
+  user-select: none;
 `;
 
 interface ItemVariantBoxProps {
