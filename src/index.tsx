@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/miles-trader">
       <Route path="/">
         <App />
       </Route>

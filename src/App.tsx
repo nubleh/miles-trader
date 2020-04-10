@@ -165,7 +165,7 @@ function App() {
               active={users[activeUser].selection[itemIndex] === variantIndex}
             >
               <div><img
-                src={`/img/${img}.png`}
+                src={`img/${img}.png`}
                 alt={img}
               /></div>
               <div>
