@@ -1,0 +1,25 @@
+const catalog = [
+  { name: 'Construction Sign', id: 'FtrSignConstruction', remakes: 5 },
+  { name: 'Lifeguard Chair', id: 'FtrMonitoringchair', remakes: 5 },
+  { name: 'Portable Toilet', id: 'FtrWCPortable', remakes: 5 },
+  { name: 'Streetlamp', id: 'FtrStreetlamp', remakes: 4 },
+  { name: 'Utility Pole', id: 'FtrTelephonepole', remakes: 2 },
+  { name: 'Drink Machine', id: 'FtrDrinkmachine', remakes: 6 },
+  { name: 'Public Bench', id: 'FtrPublicbench', remakes: 8 },
+  { name: 'Snack Machine', id: 'FtrFoodmachine', remakes: 4 },
+  { name: 'Springy Ride-On', id: 'FtrSpringrider', remakes: 7 },
+  { name: 'Tourist Telescope', id: 'FtrTelescopeSightseeing', remakes: 5 },
+  { name: 'Park Clock', id: 'FtrParkclock', remakes: 4 },
+  { name: 'Phone Box', id: 'FtrTelephonebox', remakes: 8 },
+  { name: 'Cotton Candy Stall', id: 'FtrCottoncandymachine', remakes: 3 },
+  { name: 'Playground Gym', id: 'FtrJunglegym', remakes: 5 },
+  { name: 'Parabolic Antenna', id: 'FtrParabolicantenna', remakes: 3 },
+  { name: 'Solar Panel', id: 'FtrSolarpanel', remakes: 2 },
+  { name: 'Wind Turbine', id: 'FtrWindturbine', remakes: 2 },
+  { name: 'Pool', id: 'FtrPool', remakes: 3 },
+  { name: 'Monster Statue', id: 'FtrMonster', remakes: 4 },
+  { name: 'Lighthouse', id: 'FtrLighthouse', remakes: 6 },
+  { name: 'Teacup Ride', id: 'FtrTurncup', remakes: 4 },
+];
+
+export default catalog;
