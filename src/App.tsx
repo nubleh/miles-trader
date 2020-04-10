@@ -56,9 +56,17 @@ function App() {
     name: 'monique',
     selection: [...defaultSelection],
   }];
-  const parts = location.pathname.split('/').filter(p => !!p);
-  if (parts.length > 0) {
-    const userCodes = parts[0].split(',');
+
+  const queryParts = location.search.substr(1).split('&').map(queryPart => {
+    const keyValue = queryPart.split('=');
+    return {
+      key: keyValue[0],
+      value: keyValue[1],
+    };
+  });
+  const queryData = queryParts.find(qp => qp.key === 'data');
+  if (queryData) {
+    const userCodes = queryData.value.split(',');
     const importedUsers = userCodes.map(userCode => {
       const parts = userCode.split('-');
       return {
@@ -75,8 +83,8 @@ function App() {
   }).join(',');
 
   useEffect(() => {
-    const newPath = `/${userCode}`;
-    if (newPath !== location.pathname) {
+    const newPath = `?data=${userCode}`;
+    if (newPath !== location.search) {
       history.replace(newPath);
     }
   }, [userCode, history, location]);
@@ -118,6 +126,9 @@ function App() {
 
   const removeUser = (userIndex: number) => {
     return () => {
+      if (users.length < 2) {
+        return;
+      }
       const newUsers = [...users];
       newUsers.splice(userIndex, 1);
       setUsers(newUsers);
