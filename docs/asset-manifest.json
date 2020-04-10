@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/miles-trader/static/css/main.90c3e137.chunk.css",
-    "main.js": "/miles-trader/static/js/main.205a7a90.chunk.js",
-    "main.js.map": "/miles-trader/static/js/main.205a7a90.chunk.js.map",
+    "main.js": "/miles-trader/static/js/main.fcddc0b0.chunk.js",
+    "main.js.map": "/miles-trader/static/js/main.fcddc0b0.chunk.js.map",
     "runtime-main.js": "/miles-trader/static/js/runtime-main.37bb26af.js",
     "runtime-main.js.map": "/miles-trader/static/js/runtime-main.37bb26af.js.map",
     "static/js/2.b67f12f8.chunk.js": "/miles-trader/static/js/2.b67f12f8.chunk.js",
     "static/js/2.b67f12f8.chunk.js.map": "/miles-trader/static/js/2.b67f12f8.chunk.js.map",
     "index.html": "/miles-trader/index.html",
-    "precache-manifest.f64953601e2d09530b851c3704da70de.js": "/miles-trader/precache-manifest.f64953601e2d09530b851c3704da70de.js",
+    "precache-manifest.21d1c357e2f0b55686a5e4a3f57d30ad.js": "/miles-trader/precache-manifest.21d1c357e2f0b55686a5e4a3f57d30ad.js",
     "service-worker.js": "/miles-trader/service-worker.js",
     "static/css/main.90c3e137.chunk.css.map": "/miles-trader/static/css/main.90c3e137.chunk.css.map",
     "static/js/2.b67f12f8.chunk.js.LICENSE.txt": "/miles-trader/static/js/2.b67f12f8.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.37bb26af.js",
     "static/js/2.b67f12f8.chunk.js",
     "static/css/main.90c3e137.chunk.css",
-    "static/js/main.205a7a90.chunk.js"
+    "static/js/main.fcddc0b0.chunk.js"
   ]
 }
