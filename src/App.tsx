@@ -162,7 +162,7 @@ function App() {
       {catalog.map((item, itemIndex) => {
         const remakes: string[] = [];
         for(let x = 0; x < item.remakes; x++) {
-          remakes.push(`${item.id}_remake_${x}_0`);
+          remakes.push(`${item.id}_Remake_${x}_0`);
         }
         return <ItemBox key={item.id}>
           <div>{item.name}</div>
