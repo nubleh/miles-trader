@@ -131,6 +131,9 @@ function App() {
       }
       const newUsers = [...users];
       newUsers.splice(userIndex, 1);
+      if (!newUsers[activeUser]) {
+        setActiveUser(newUsers.length - 1);
+      }
       setUsers(newUsers);
     };
   };
