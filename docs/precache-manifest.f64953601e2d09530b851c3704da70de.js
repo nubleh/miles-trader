@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6891a1519a74e6fad934c2b25c7670e7",
+    "revision": "ac6a0fc295a0eb796ad9acf69389895a",
     "url": "/miles-trader/index.html"
   },
   {
-    "revision": "2f49ce122503df96be3c",
+    "revision": "4ac655de39a1dcecc5d8",
     "url": "/miles-trader/static/css/main.90c3e137.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/miles-trader/static/js/2.b67f12f8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2f49ce122503df96be3c",
-    "url": "/miles-trader/static/js/main.7cd0a7ea.chunk.js"
+    "revision": "4ac655de39a1dcecc5d8",
+    "url": "/miles-trader/static/js/main.205a7a90.chunk.js"
   },
   {
     "revision": "639a3f1104dc622f5f03",
