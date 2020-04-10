@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/miles-trader/precache-manifest.21d1c357e2f0b55686a5e4a3f57d30ad.js"
+  "/miles-trader/precache-manifest.8056503cd2fbb801f0064ef07671ef98.js"
 );
 
 self.addEventListener('message', (event) => {
