@@ -91,9 +91,6 @@ function App() {
 
   const selectItem = (itemIndex: number, variantIndex: number) => {
     return () => {
-      // const newSelection = [...selection];
-      // newSelection[itemIndex] = variantIndex;
-      // setSelection(newSelection);
       const newUsers = [...users];
       newUsers[activeUser].selection[itemIndex] = variantIndex;
       setUsers(newUsers);
@@ -157,7 +154,9 @@ function App() {
                 onChange={updateUserName(userIndex)}
                 onFocus={assignActiveUser(userIndex)}
               />
-              <span onClick={removeUser(userIndex)}>remove</span>
+              {users.length > 1 && <span onClick={removeUser(userIndex)}>
+                remove
+              </span>}
             </li>;
           })}
         </ul>
@@ -178,10 +177,10 @@ function App() {
               key={img}
               active={users[activeUser].selection[itemIndex] === variantIndex}
             >
-              <div><img
-                src={`img/${img}.png`}
-                alt={img}
-              /></div>
+              <ItemImage>
+                <img src={`img/${img}.png`} alt={img}/>
+                <img src={`img/${img}.png`} alt={img}/>
+              </ItemImage>
               <div>
                 {usersWithThisVariant.map(user => {
                   const userIndex = users.indexOf(user);
@@ -298,21 +297,33 @@ const ItemVariantBox = styled.div<ItemVariantBoxProps>`
   cursor: pointer;
   vertical-align: top;
 
-  > div:first-child {
-    text-align: center;
-
-    img {
-      width: 40px;
-      transition: transform 0.2s;
-    }
-  }
-
   ${({ active }) => active && css`
     background: rgba(255, 255, 255, 0.1);
   `}
+`;
 
-  &:hover img {
-    transform: scale(1.5);
+const ItemImage = styled.div`
+  text-align: center;
+  position: relative;
+
+  img {
+    width: 40px;
+  }
+  img:nth-child(2) {
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0;
+    transition: transform 2s;
+  }
+
+  &:hover img + img {
+    display: block;
+    z-index: 1;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(6);
   }
 `;
 
