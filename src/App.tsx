@@ -210,13 +210,16 @@ function App() {
               return user.selection[itemIndex] === variantIndex;
             });
             return <ItemVariantBox
-              onClick={selectItem(itemIndex, variantIndex)}
               key={img}
               active={users[activeUser].selection[itemIndex] === variantIndex}
             >
               <ItemImage>
-                <img src={`img/${img}.png`} alt={img}/>
-                <img src={`img/${img}.png`} alt={img}/>
+                <div tabIndex={0}>🔍</div>
+                <img
+                  src={`img/${img}.png`}
+                  alt={img}
+                  onClick={selectItem(itemIndex, variantIndex)}
+                />
               </ItemImage>
               <div>
                 {usersWithThisVariant.map(user => {
@@ -345,22 +348,15 @@ const ItemImage = styled.div`
 
   img {
     width: 40px;
-  }
-  img:nth-child(2) {
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    opacity: 0;
-    transition: transform 2s;
+    transition: transform;
+    transition-duration: 0.5s;
+    transform-origin: center bottom;
   }
 
-  &:hover img + img {
-    display: block;
-    z-index: 1;
-    opacity: 1;
-    transform: translateX(-50%) translateY(-50%) scale(6);
+  div:focus + img {
+    transform: scale(4);
+    transition-duration: 1s;
+    pointer-events: none;
   }
 `;
 
