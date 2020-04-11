@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
 import styled, { css } from 'styled-components';
@@ -10,6 +10,11 @@ const codeInBinLength = catalog.reduce((c, n) => {
   const maxInBin = maxValue.toString(2);
   return c + maxInBin.length;
 }, 0);
+
+interface UserSelection {
+  name: string
+  selection: number[]
+}
 
 function selectionToCode (selection: number[]) {
   const codeInBin = catalog.map((item, itemIndex) => {
@@ -45,19 +50,8 @@ function codeToSelection (code: string) {
   return selection.reverse();
 }
 
-function App() {
-
-  const location = useLocation();
-  const history = useHistory();
-
-  const [activeUser, setActiveUser] = useState(0);
-
-  let defaultUsers = [{
-    name: 'monique',
-    selection: [...defaultSelection],
-  }];
-
-  const queryParts = location.search.substr(1).split('&').map(queryPart => {
+function getUserSelectionsFromQuery (query: string) {
+  const queryParts = query.substr(1).split('&').map(queryPart => {
     const keyValue = queryPart.split('=');
     return {
       key: keyValue[0],
@@ -67,14 +61,32 @@ function App() {
   const queryData = queryParts.find(qp => qp.key === 'data');
   if (queryData) {
     const userCodes = queryData.value.split(',');
-    const importedUsers = userCodes.map(userCode => {
+    const importedUsers: UserSelection[] = userCodes.map(userCode => {
       const parts = userCode.split('-');
       return {
         name: parts[0],
         selection: codeToSelection(parts[1]),
       };
     })
-    defaultUsers = importedUsers;
+    return importedUsers;
+  }
+  return null;
+}
+
+function App() {
+  const location = useLocation();
+  const history = useHistory();
+  const [activeUser, setActiveUser] = useState(0);
+  const queryHistory = useRef<string[]>([]);
+
+  let defaultUsers: UserSelection[] = [{
+    name: 'monique',
+    selection: [...defaultSelection],
+  }];
+
+  const userSelectionsFromQuery = getUserSelectionsFromQuery(location.search);
+  if (userSelectionsFromQuery) {
+    defaultUsers = userSelectionsFromQuery;
   }
   const [users, setUsers] = useState(defaultUsers);
 
@@ -135,10 +147,35 @@ function App() {
     };
   };
 
+  const undo = () => {
+    if (queryHistory.current.length < 2) {
+      return;
+    }
+    const prevQuery = queryHistory.current[queryHistory.current.length - 2];
+    queryHistory.current.splice(-2);
+    queryHistory.current = queryHistory.current.slice(-500);
+    if (!prevQuery) {
+      return;
+    }
+    const prevUserSelections = getUserSelectionsFromQuery(prevQuery);
+    if (prevUserSelections) {
+      setUsers(prevUserSelections);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      location.search !== queryHistory.current[queryHistory.current.length - 1]
+    ) {
+      queryHistory.current.push(location.search);
+    }
+  }, [location.search]);
+
   return (
     <MainDiv>
       <Users>
         <div>
+          <button onClick={undo}>Undo</button>
           <button onClick={addNewUser}>Add user</button>
         </div>
         <ul>
