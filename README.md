@@ -1,5 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How To Use
+
+- Visit `https://nubleh.github.io/miles-trader`
+- Click the user name at the top of the screen to name yourself
+- Click on the items that you have
+- Click "Add user" to add additional users
+- Before assigning a user's items, click on that user's name, and then start clicking items
+- Copy and share url to your friends, or
+- Take screenshot and share image to your friends
+
+## Example:
+
+```
+https://nubleh.github.io/miles-trader/?data=nubleh-1lcsmd7qkn,nekodex-2v7cozmuqy
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
