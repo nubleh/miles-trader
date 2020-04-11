@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## How To Use
 
-- Visit `https://nubleh.github.io/miles-trader`
+- Visit [https://nubleh.github.io/miles-trader](https://nubleh.github.io/miles-trader)
 - Click the user name at the top of the screen to name yourself
 - Click on the items that you have
 - Click "Add user" to add additional users
